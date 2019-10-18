@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://d3js.org/d3.v3.min.js"></script>  
+<!--
+  Full library
+  <script src="https://d3js.org/d3.v5.js"></script>
+  
+  For the minified version:
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  
+  You can also use the standalone D3 microlibraries. For example, d3-selection:  
+  <script src="https://d3js.org/d3-selection.v1.min.js"></script>
+-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>D3 JS intro</title>  	
+	<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <h2>Lets Hello World with D3 JS</h2>
+  <h4>wow that takes 200ms to load!?? how to cache?</h4>
+  <br>
+  <ul></ul>
+  <svg width="300px" height="360px"></svg>
+  <div class="chart"></div>
+  
+
+  <script>
+    ingredients = ['Taco shells','prawns','guacamole','green sauce','red onions']
+    d3.select('h2').style('font-size', '40px');
+    d3.select('ul')
+      .selectAll('li')
+      .data(ingredients)
+      .enter()              // iterator? YES https://scrimba.com/p/pEKMsN/cast-1953
+      .append('li')
+      .text(igdt => igdt);  // whats this line doing exaclty?
+      //.text(igdt => igdt + " & mayonaizu");
+
+    var numbers = [20,30,50,10,90,130,5,78];
+    var barHeight = 40;
+    d3.select('svg')
+      .selectAll('rect')
+      .data(numbers)
+      .enter()              // 
+      .append('rect')
+      .attr("width", d => d)              // d data passed from iterator?    
+      .attr("height", barHeight - 4)
+      .attr('transform', (d, i) => "translate(100," + barHeight * i + ")")
+      
+
+    d3.select('.chart')
+      .selectAll('div')
+      .data(numbers)
+      .enter()              // 
+      .append('div')
+    //.attr("width", d => d)              // d data passed from iterator?
+      .style("width", function(d) { return d + "px"; }) // expanded vs of above
+      .text(function(d) { return d; });   // setting colour - CSS    
+    
+      
+  </script>
+  
+
+</body>
+
+</html>
